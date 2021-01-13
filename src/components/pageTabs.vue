@@ -62,22 +62,23 @@
 <script>
 export default {
   props: {
-    keepAliveComponentInstance: {},
+    keepAliveComponentInstance: {}, //keep-alive控件实例对象
     blankRouteName: {
       type: String,
       default: "blank",
-    },
+    }, //空白路由的name值
   },
   data() {
     return {
-      contextMenuVisible: false,
-      contextMenuLeft: 0,
-      contextMenuTop: 0,
-      contextMenuTargetPageRoute: null,
-      openedPageRouters: [],
+      contextMenuVisible: false, //右键菜单是否显示
+      contextMenuLeft: 0, //右键菜单显示位置
+      contextMenuTop: 0, //右键菜单显示位置
+      contextMenuTargetPageRoute: null, //右键所指向的菜单路由
+      openedPageRouters: [], //已打开的路由页面
     };
   },
   watch: {
+    //当路由变更时，执行打开页面的方法
     $route: {
       handler(v) {
         this.openPage(v);
@@ -86,6 +87,7 @@ export default {
     },
   },
   mounted() {
+    //添加点击关闭右键菜单
     window.addEventListener("click", this.closeContextMenu);
   },
   destroyed() {
